@@ -1,0 +1,19 @@
+{
+  "name": "mirakmalsulton/pmanager",
+  "description": "Laravel Eloquent model position manager",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mirakmal Sultonov",
+      "email": "mirakmalsulton@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "MirakmalSulton\\PManager\\": "src/"
+    }
+  }
+}

@@ -14,17 +14,17 @@ trait PositionManager
         foreach ($rows as $row) {
             if ($row->id != $this->id) {
                 $prevRow = $row;
-                $row->update([config('p_manager.field_name') => $position]);
+                $row->update([$this->fieldName() => $position]);
                 $position++;
                 continue;
             }
 
             if ($prevRow) {
                 $positionForPrevTariff = $position;
-                $prevRow->update([config('p_manager.field_name') => $positionForPrevTariff]);
+                $prevRow->update([$this->fieldName() => $positionForPrevTariff]);
 
                 $positionForCurrentTariff = $position - 1;
-                $row->update([config('p_manager.field_name') => $positionForCurrentTariff]);
+                $row->update([$this->fieldName() => $positionForCurrentTariff]);
             }
 
             $position++;
@@ -45,17 +45,17 @@ trait PositionManager
 
             if ($prevRow) {
                 $positionForCurrentTariff = $position;
-                $prevRow->update([config('p_manager.field_name') => $positionForCurrentTariff]);
+                $prevRow->update([$this->fieldName() => $positionForCurrentTariff]);
 
                 $positionForPrevTariff = $position - 1;
-                $row->update([config('p_manager.field_name') => $positionForPrevTariff]);
+                $row->update([$this->fieldName() => $positionForPrevTariff]);
 
                 $prevRow = null;
                 $position++;
                 continue;
             }
 
-            $row->update([config('p_manager.field_name') => $position]);
+            $row->update([$this->fieldName() => $position]);
 
             $position++;
         }
@@ -63,6 +63,11 @@ trait PositionManager
 
     private function getCollection(): Collection
     {
-        return static::orderBy(config('p_manager.field_name'))->get();
+        return static::orderBy($this->fieldName())->get();
+    }
+    
+    private function fieldName(): string
+    {
+        return config('pmanager.field_name');
     }
 }

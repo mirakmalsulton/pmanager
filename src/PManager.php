@@ -1,10 +1,10 @@
 <?php
 
-namespace MirakmalSulton\PManager\Traits;
+namespace MirakmalSulton\PManager;
 
 use Illuminate\Database\Eloquent\Collection;
 
-trait PositionManager
+trait PManager
 {
     public function movePositionUp()
     {
